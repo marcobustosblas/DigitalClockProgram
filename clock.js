@@ -25,14 +25,17 @@ function UpdatedClock(){
     // Get the elements of body
     const body = document.body;
 
-    // After 12:00 PM (noon)
-    if (hours >= 12 && meridium === "PM") { 
-        body.style.backgroundImage = `url('${sunrise}')`;
-    // After 7:00 PM
-    } else if (hours >= 7 && meridium === "PM") { 
-        body.style.backgroundImage = `url('${night}')`;
-    } else {
+    //Get the hour in format 24 hrs
+    const currentHour = date.getHours();
+
+    if (currentHour >= 7 && currentHour < 12) {
         body.style.backgroundImage = `url('${day}')`;
+
+    } else if (currentHour >= 12 && currentHour < 19) {
+        body.style.backgroundImage = `url('${sunrise}')`;
+        
+    } else {
+        body.style.backgroundImage = `url('${night}')`;
     }
 
 }
